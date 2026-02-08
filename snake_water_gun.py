@@ -11,6 +11,7 @@ print(" - Gun kills Snake 🔫🐍 → Gun wins")
 print(" - Same move → It's a Draw!\n")
 
 while True:
+    # Read/Create the file to keep the score
     try:
         with open("game.txt", "r") as f:
             txt = f.read()
@@ -105,7 +106,6 @@ while True:
         user_score = 0
         comp_score = 0
         turns = 1
-
 
 
 # Display final stats
