@@ -11,12 +11,16 @@ print(" - Gun kills Snake 🔫🐍 → Gun wins")
 print(" - Same move → It's a Draw!\n")
 
 while True:
-    f = open("game.txt", "r")
-    txt = f.read()
-    li = txt.split(",")
-    wins = int(li[0])
-    losses = int(li[1])
-    f.close()
+    try:
+        with open("game.txt", "r") as f:
+            txt = f.read()
+            li = txt.split(",")
+            wins = int(li[0])
+            losses = int(li[1])
+    except FileNotFoundError as fe:
+        with open("game.txt", "w") as f:
+            f.write("0,0")
+            f.close()
 
     user_score = 0
     comp_score = 0
