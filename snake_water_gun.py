@@ -11,6 +11,13 @@ print(" - Gun kills Snake 🔫🐍 → Gun wins")
 print(" - Same move → It's a Draw!\n")
 
 while True:
+    f = open("game.txt", "r")
+    txt = f.read()
+    li = txt.split(",")
+    wins = int(li[0])
+    losses = int(li[1])
+    f.close()
+
     user_score = 0
     comp_score = 0
     turns = 1
@@ -76,8 +83,14 @@ while True:
         print(f"🤝 The game is a draw! Final Score: {user_score} : {comp_score}")
     elif user_score > comp_score:
         print(f"🏆 Congratulations! You won the game {user_score} : {comp_score}")
+        with open("game.txt", "w") as f:
+            wins+=1
+            f.write(f"{wins},{losses}") 
     else:
         print(f"😔 Sorry! You lost the game {user_score} : {comp_score}")
+        with open("game.txt", "w") as f:
+            losses+=1
+            f.write(f"{wins},{losses}") 
 
     # Ask to continue
     cont = input("\nDo you want to play another round? (Y/N): ").strip().lower()
@@ -89,6 +102,19 @@ while True:
         comp_score = 0
         turns = 1
 
+
+
+# Display final stats
+with open("game.txt", "r") as f:
+    txt = f.read()
+    li = txt.split(",")
+    wins = int(li[0])
+    losses = int(li[1])
+
+print("\n===== 📊 Final Game Stats 📊 =====")
+print(f"✨ Total Wins: {wins}")
+print(f"💔 Total Losses: {losses}")
+print("=================================")
 
            
 
